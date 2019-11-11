@@ -8,6 +8,7 @@ const passport = require('passport');
 const validateRegisterInput = require('../../validations/register');
 const validateLoginInput = require('../../validations/login');
 
+// Register a new user
 router.post('/register', (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
 
@@ -61,6 +62,7 @@ router.post('/register', (req, res) => {
     })
 })
 
+// Log a user in
 router.post('/login', (req, res) => {
   const { errors, isValid } = validateLoginInput(req.body);
 
@@ -99,7 +101,6 @@ router.post('/login', (req, res) => {
                 });
               }
             );
-            // res.json({ msg: 'Success' });
           } else {
             errors.password = "Incorrect password";
             return res.status(400).json(errors);
@@ -108,12 +109,17 @@ router.post('/login', (req, res) => {
     })
 })
 
-router.get('/current', passport.authenticate('jwt', {session: false}), (req, res) => {
-  res.json({
-    id: req.user.id,
-    handle: req.user.handle,
-    email: req.user.email
-  });
-})
+// Gets current user
+router.get(
+  '/current',
+  passport.authenticate('jwt', {session: false}),
+  (req, res) => {
+    res.json({
+      id: req.user.id,
+      handle: req.user.handle,
+      email: req.user.email
+    });
+  }
+)
 
 module.exports = router;

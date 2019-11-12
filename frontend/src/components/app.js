@@ -2,18 +2,18 @@ import React, { Fragment } from 'react';
 import { Switch } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
-import NavBarContainer from './nav/navbar';
+import NavBar from './nav/navbar';
 import MainPage from './main/main_page';
-import LoginFormContainer from './session/login_form_container';
-import SignupFormContainer from './session/signup_form_container';
+import LoginForm from './session/login_form';
+import SignupForm from './session/signup_form';
 
 const App = () => (
   <Fragment>
-    <NavBarContainer />
+    <NavBar />
     <Switch>
       <AuthRoute exact path="/" component={MainPage} />
-      <AuthRoute exact path="/login" component={LoginFormContainer} />
-      <AuthRoute exact path="/signup" component={SignupFormContainer} />
+      <AuthRoute exact path="/login" component={LoginForm} />
+      <AuthRoute exact path="/signup" component={SignupForm} />
     </Switch>
   </Fragment>
 );

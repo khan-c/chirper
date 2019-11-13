@@ -1,15 +1,28 @@
-import { RECEIVE_TWEETS } from '../actions/tweet_actions';
+import {
+  RECEIVE_TWEETS,
+  RECEIVE_USER_TWEETS,
+  RECEIVE_NEW_TWEET
+} from "../actions/tweet_actions";
 
 const initialState = {
-  
+  all: {},
+  user: {},
+  new: undefined
 };
 
 export default function(state = initialState, action) {
-  switch(action.type) {
+  Object.freeze(state);
+  let newState = Object.assign({}, state);
+  switch (action.type) {
     case RECEIVE_TWEETS:
-      return {
-        
-      };
+      newState.all = action.tweets.data;
+      return newState;
+    case RECEIVE_USER_TWEETS:
+      newState.user = action.tweets.data;
+      return newState;
+    case RECEIVE_NEW_TWEET:
+      newState.new = action.tweet.data;
+      return newState;
     default:
       return state;
   }

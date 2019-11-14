@@ -1,15 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 
 import { signup } from "../../actions/session_actions";
 
 const SignupForm = props => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const isSignedIn = useSelector(state => state.session.isSignedIn);
   const errors = useSelector(state => state.errors.session);
   const [handleInput, setHandle] = useState("");
   const [emailInput, setEmail] = useState("");
   const [passwordInput, setPassword] = useState("");
   const [password2Input, setPassword2] = useState("");
+
+  useEffect(() => {
+    const redirect = () => {
+      history.push("/login");
+    };
+    if (isSignedIn) {
+      redirect();
+    }
+  }, [isSignedIn, history]);
 
   const setter = set => e => {
     const { target } = e;
@@ -46,15 +58,15 @@ const SignupForm = props => {
         <div>
           <input
             type="text"
-            value={handleInput}
-            onChange={setter(setHandle)}
-            placeholder="Username"
-          />
-          <input
-            type="text"
             value={emailInput}
             onChange={setter(setEmail)}
             placeholder="Email"
+          />
+          <input
+            type="text"
+            value={handleInput}
+            onChange={setter(setHandle)}
+            placeholder="Handle"
           />
           <input
             type="password"

@@ -5,21 +5,18 @@ import TweetBox from "./tweet_box";
 
 const Tweets = () => {
   const tweets = useSelector(state => Object.values(state.tweets.all));
+  const dispatch = useDispatch();
 
-  const useFetching = fetchAction => {
-    useEffect(() => {
-      fetchAction();
-    }, [fetchAction]);
-  };
-
-  useFetching(fetchTweets, useDispatch());
+  useEffect(() => {
+    dispatch(fetchTweets());
+  }, [dispatch]);
 
   if (tweets.length === 0) return <div>There are no Tweets</div>;
   return (
     <div>
       <h2>All Tweets</h2>
       {tweets.map(tweet => (
-        <TweetBox key={tweet.id} text={tweet.text} />
+        <TweetBox key={tweet._id} text={tweet.text} />
       ))}
     </div>
   );

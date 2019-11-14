@@ -1,10 +1,10 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 const TweetBox = props => {
   return (
-    <div>
+    <Fragment>
       <h3>{props.text}</h3>
-    </div>
+    </Fragment>
   );
 };
 

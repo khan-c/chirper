@@ -16,7 +16,7 @@ const App = () => (
       <AuthRoute exact path="/login" component={LoginForm} />
       <AuthRoute exact path="/signup" component={SignupForm} />
 
-      <AuthRoute exact path="/tweets" component={Tweets} />
+      <ProtectedRoute exact path="/tweets" component={Tweets} />
     </Switch>
   </Fragment>
 );

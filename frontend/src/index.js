@@ -1,17 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import jwt_decode from 'jwt-decode';
+import React from "react";
+import ReactDOM from "react-dom";
+import jwt_decode from "jwt-decode";
 
-import Root from './components/root';
-import './index.css';
+import Root from "./components/root";
+import "./index.css";
 
-import configureStore from './store/store';
+import configureStore from "./store/store";
 
-import { setAuthToken } from './util/session_api_util';
-import { logout } from './actions/session_actions';
+import { setAuthToken } from "./util/session_api_util";
+import { logout } from "./actions/session_actions";
 
-
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   let store;
 
   // If a returning user has a session token stored in localStorage
@@ -23,7 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const decodedUser = jwt_decode(localStorage.jwtToken);
 
     // Create preconfigured state that can be immediately added to store
-    const preloadedState = { session: { isAuthenticated: true, user: decodedUser } };
+    const preloadedState = {
+      session: { isAuthenticated: true, user: decodedUser }
+    };
 
     store = configureStore(preloadedState);
 
@@ -33,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (decodedUser.exp < currentTime) {
       // Logout user and redirect to login page
       store.dispatch(logout());
-      window.location.href = '/login';
+      window.location.href = "/login";
     }
   } else {
     // first time user, start with empty store
@@ -41,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // render root component and pass store as prop
-  const root = document.getElementById('root');
+  const root = document.getElementById("root");
 
   ReactDOM.render(<Root store={store} />, root);
 });

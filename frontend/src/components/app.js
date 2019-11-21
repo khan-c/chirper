@@ -7,6 +7,7 @@ import MainPage from "./main/main_page";
 import LoginForm from "./session/login_form";
 import SignupForm from "./session/signup_form";
 import Tweets from "./tweets/tweets";
+import Profile from "./profile/profile";
 
 const App = () => (
   <Fragment>
@@ -17,6 +18,7 @@ const App = () => (
       <AuthRoute exact path="/signup" component={SignupForm} />
 
       <ProtectedRoute exact path="/tweets" component={Tweets} />
+      <ProtectedRoute exact path="/profile" component={Profile} />
     </Switch>
   </Fragment>
 );

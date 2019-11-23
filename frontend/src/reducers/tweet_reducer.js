@@ -5,8 +5,8 @@ import {
 } from "../actions/tweet_actions";
 
 const initialState = {
-  all: [],
-  user: [],
+  all: {},
+  user: {},
   new: undefined
 };
 

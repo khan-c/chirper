@@ -4,7 +4,7 @@ import { fetchUserTweets } from "../../actions/tweet_actions";
 import TweetBox from "../tweets/tweet_box";
 
 const Profile = () => {
-  const tweets = useSelector(state => state.tweets.user);
+  const tweets = useSelector(state => Object.values(state.tweets.user));
   const currentUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 

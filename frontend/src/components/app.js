@@ -8,6 +8,7 @@ import LoginForm from "./session/login_form";
 import SignupForm from "./session/signup_form";
 import Tweets from "./tweets/tweets";
 import Profile from "./profile/profile";
+import TweetCompose from "./tweets/tweet_compose";
 
 const App = () => (
   <Fragment>
@@ -19,6 +20,7 @@ const App = () => (
 
       <ProtectedRoute exact path="/tweets" component={Tweets} />
       <ProtectedRoute exact path="/profile" component={Profile} />
+      <ProtectedRoute exact path="/new_tweet" component={TweetCompose} />
     </Switch>
   </Fragment>
 );
